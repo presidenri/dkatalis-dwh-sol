@@ -6,7 +6,7 @@ from task_1 import get_hist_data
 
 
 if __name__ == "__main__":
-    print("Task has started")
+    print("==== TASK 2 HAS STARTED ====")
 
     data_accounts = get_hist_data(r'./data/accounts/').rename(
         columns={"id": "account_global_id",
@@ -106,4 +106,4 @@ if __name__ == "__main__":
                                                 "account_savings_account_id": "savings_account_id"})
     print(tabulate(df_dwh, headers='keys', tablefmt='psql'))
 
-    print("Task has finished")
+    print("==== TASK 2 HAS FINISHED ====")
