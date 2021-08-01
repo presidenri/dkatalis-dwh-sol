@@ -2,20 +2,20 @@ import pandas as pd
 from functools import reduce
 from tabulate import tabulate
 
-from solution.task_1 import get_hist_data
+from task_1 import get_hist_data
 
 
 if __name__ == "__main__":
     print("Task has started")
 
-    data_accounts = get_hist_data(r'../data/accounts/').rename(
+    data_accounts = get_hist_data(r'./data/accounts/').rename(
         columns={"id": "account_global_id",
                  "card_id": "account_card_id",
                  "savings_account_id": "account_savings_account_id"})
-    data_cards = get_hist_data(r'../data/cards/').rename(
+    data_cards = get_hist_data(r'./data/cards/').rename(
         columns={"id": "card_global_id",
                  "status": "card_status"})
-    data_savings_accounts = get_hist_data('../data/savings_accounts/').rename(
+    data_savings_accounts = get_hist_data('./data/savings_accounts/').rename(
         columns={"id": "savings_account_global_id",
                  "status": "savings_account_status"})
 

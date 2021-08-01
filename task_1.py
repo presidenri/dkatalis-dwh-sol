@@ -54,9 +54,9 @@ def sorted_files(file_path):
 
 
 if __name__ == "__main__":
-    data_accounts         = get_hist_data(r'../data/accounts/')
-    data_cards            = get_hist_data(r'../data/cards/')
-    data_savings_accounts = get_hist_data(r'../data/savings_accounts/')
+    data_accounts         = get_hist_data(r'./data/accounts/')
+    data_cards            = get_hist_data(r'./data/cards/')
+    data_savings_accounts = get_hist_data(r'./data/savings_accounts/')
 
     print(tabulate(data_accounts, headers='keys', tablefmt='psql'))
     print(tabulate(data_cards, headers='keys', tablefmt='psql'))
