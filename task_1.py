@@ -32,7 +32,7 @@ def get_hist_data(file_path):
                             break
                         else:
                             continue
-    print(file_list)
+
     return pd.DataFrame(file_list)
 
 
