@@ -17,15 +17,14 @@ def get_hist_data(file_path):
         with open(js[1], 'r') as json_file:
             json_text   = json.load(json_file)
             current_id  = json_text["id"]
-            records     = {}
             if "op" in json_text:
                 if "data" in json_text and json_text["op"] == "c":
                     records     = {"id": json_text["id"], **json_text["data"], "ts": json_text["ts"]}
                     new_records = copy.copy(records)
                     file_list.append(new_records)
                 elif json_text["op"] == "u":
-                    records = {"id": json_text["id"], **json_text["set"], "ts": json_text["ts"]}
-                    for i, data in enumerate(file_list):
+                    records     = {"id": json_text["id"], **json_text["set"], "ts": json_text["ts"]}
+                    for i, data in enumerate(reversed(file_list)):
                         if data["id"] == current_id:
                             new_records = copy.copy(data)
                             new_records.update(records)
@@ -33,7 +32,7 @@ def get_hist_data(file_path):
                             break
                         else:
                             continue
-
+    print(file_list)
     return pd.DataFrame(file_list)
 
 
@@ -41,8 +40,8 @@ def sorted_files(file_path):
     """
     Get JSON files sorted by timestamp in the file and returns List[(int, str)]
     """
-    ts_info = []
-    json_files = [pos_json for pos_json in os.listdir(file_path) if pos_json.endswith('.json')]
+    ts_info     = []
+    json_files  = [pos_json for pos_json in os.listdir(file_path) if pos_json.endswith('.json')]
     for index, js in enumerate(json_files):
         with open(os.path.join(file_path, js)) as json_file:
             json_text = json.load(json_file)
