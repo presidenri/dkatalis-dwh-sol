@@ -17,17 +17,17 @@ def get_hist_data(file_path):
         with open(js[1], 'r') as json_file:
             json_text   = json.load(json_file)
             current_id  = json_text["id"]
-
+            records     = {}
             if "op" in json_text:
                 if "data" in json_text and json_text["op"] == "c":
-                    records = {"id": json_text["id"], **json_text["data"], "ts": json_text["ts"]}
+                    records     = {"id": json_text["id"], **json_text["data"], "ts": json_text["ts"]}
                     new_records = copy.copy(records)
                     file_list.append(new_records)
                 elif json_text["op"] == "u":
                     records = {"id": json_text["id"], **json_text["set"], "ts": json_text["ts"]}
                     for i, data in enumerate(file_list):
                         if data["id"] == current_id:
-                            new_records = copy.copy(new_records)
+                            new_records = copy.copy(data)
                             new_records.update(records)
                             file_list.append(new_records)
                             break
